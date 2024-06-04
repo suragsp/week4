@@ -1,0 +1,13 @@
+# Use the official nginx image as the base image
+FROM nginx:latest
+
+WORKDIR /app
+
+COPY . .
+COPY default.conf /tmp/default.conf
+
+ENV FLASK_SERVER_ADDR = flask:8000
+RUN chmod +x start.sh
+EXPOSE 80
+# Run the start script
+CMD ["bash", "start.sh"]
